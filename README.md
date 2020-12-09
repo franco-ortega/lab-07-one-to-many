@@ -126,5 +126,5 @@ https://github.com/alchemycodelab/alchemy-fsjs-december-2020/tree/main/07_one-to
     1. **__ tests__**
         1. app.test.js
         1. or:
-            1. flower.test.js
+            1. flowers.test.js
             1. bees.test.js
