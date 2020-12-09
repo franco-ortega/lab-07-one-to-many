@@ -12,6 +12,75 @@ https://github.com/alchemycodelab/alchemy-fsjs-december-2020/tree/main/07_one-to
 1. Create remote repo
 1. Connect remote repo to local repo
 1. Create folders and files
+1. Create server.js
+1. Update package.json
+1. Update app.js to connect with server.js
+1. Add sample test to app.test.js
+1. Add sample GET endpoint to app.js
+1. Add tables to setup.sql:
+    1. flowers table
+        1. DROP TABLE...CASCADE
+    2. bees table
+        1. DROP TABLE....
+
+1. Add class Flower to flowers.js
+    1. Add constructor to Flower model
+        1. id
+        1. color
+        1. fragrance
+        1. petals
+    1. Add CRUD to Flower:
+        1. Create/insert/post
+            1. Create test in app.test.js
+            1. Create insert() in flowers.js
+            1. Create POST endpoint in app.js
+        1. Read/find/findById/GET
+            1. Get all test in app.test.js
+            1. find() in flowers.js
+            1. GET endpoint in app.js
+            1. Get one item test in app.test.js
+            1. findById() in flowers.js
+            1. POST endpoint in app.js
+        1. Update/update/PUT
+            1. Update test in app.test.js
+            1. update() in flowers.js
+            1. PUT endpoint in app.js
+        1. Delete/delete/DELETE
+            1. Delete test in app.test.js
+            1. delete() in flowers.js
+            1. DELETE endpoint in app.js
+
+1. Add class Bee to bees.js
+    1. Add constructor to Bee model
+        1. id
+        1. bee_name
+        1. buzz_volume
+        1. age
+    1. Add CRUD to Bee:
+        1. Create/insert/post
+            1. Create test in app.test.js
+            1. Create insert() in flowers.js
+            1. Create POST endpoint in app.js
+        1. Read/find/findById/GET
+            1. Get all test in app.test.js
+            1. find() in flowers.js
+            1. GET endpoint in app.js
+            1. Get one item test in app.test.js
+            1. findById() in flowers.js
+            1. POST endpoint in app.js
+        1. Update/update/PUT
+            1. Update test in app.test.js
+            1. update() in flowers.js
+            1. PUT endpoint in app.js
+        1. Delete/delete/DELETE
+            1. Delete test in app.test.js
+            1. delete() in flowers.js
+            1. DELETE endpoint in app.js
+1. Add JOIN to Flower class for Bee class:
+    1. Update findById() test in app.test.js
+    1. Update findById() function in flowers.js
+    1. Update GET endpoint with findById() in app.js
+
 
 ## Setup
 
