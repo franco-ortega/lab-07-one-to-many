@@ -20,8 +20,19 @@ https://github.com/alchemycodelab/alchemy-fsjs-december-2020/tree/main/07_one-to
 1. Add tables to setup.sql:
     1. flowers table
         1. DROP TABLE...CASCADE
+        1. CREATE TABLE
+            1. id
+            1. color
+            1. fragrance
+            1. petals
     2. bees table
         1. DROP TABLE....
+        1. CREATE TABLE
+            1. id
+            1. bee_name
+            1. buzz_style
+            1. fuzzy_factor
+            1. bee_id
 
 1. Add class Flower to flowers.js
     1. Add constructor to Flower model
@@ -54,8 +65,8 @@ https://github.com/alchemycodelab/alchemy-fsjs-december-2020/tree/main/07_one-to
     1. Add constructor to Bee model
         1. id
         1. bee_name
-        1. buzz_volume
-        1. age
+        1. buzz_style
+        1. fuzzy_factor
     1. Add CRUD to Bee:
         1. Create/insert/post
             1. Create test in app.test.js
