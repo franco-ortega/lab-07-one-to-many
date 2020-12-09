@@ -11,18 +11,7 @@ https://github.com/alchemycodelab/alchemy-fsjs-december-2020/tree/main/07_one-to
 1. Create README
 1. Create remote repo
 1. Connect remote repo to local repo
-1. Create top level files:
-    1. server.js
-1. Create folders & files:
-    1. **lib**
-        1. app.js
-    1. **sql**
-        1. setup.sql
-    1. **__ tests__**
-        1. app.test.js
-        1. or:
-            1. flower.test.js
-            1. bees.test.js
+1. Create folders and files
 
 ## Setup
 
@@ -35,7 +24,8 @@ https://github.com/alchemycodelab/alchemy-fsjs-december-2020/tree/main/07_one-to
 1. *npm i express*
 1. *npm i supertest*
 1. *code .*
-1. *git checkout -b main* (creates main branch)
+1. Create main branch:
+    1. *git checkout -b main*
 1. Create README.md
 1. Create .env
     1. postgres login
@@ -51,4 +41,21 @@ https://github.com/alchemycodelab/alchemy-fsjs-december-2020/tree/main/07_one-to
     1. *git add -A*
     1. *git commit -m 'add initial commit'*
     1. *git push origin main*
-
+1. Create dev branch:
+    1. *git checkout -b dev*
+1. Connect to pgAdmin
+1. Create top level files:
+    1. server.js
+1. Create folders & files:
+    1. **lib**
+        1. app.js
+        1. **models**
+            1. flowers.js
+            1. bees.js
+    1. **sql**
+        1. setup.sql
+    1. **__ tests__**
+        1. app.test.js
+        1. or:
+            1. flower.test.js
+            1. bees.test.js
