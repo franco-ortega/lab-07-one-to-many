@@ -1,6 +1,7 @@
 const fs = require('fs');
 const request = require('supertest');
 const app = require('../lib/app');
+const Bee = require('../lib/models/bees');
 const Flower = require('../lib/models/flowers');
 const pool = require('../lib/utils/pool');
 
@@ -138,6 +139,33 @@ describe('app.js endpoint', () => {
       fuzzyFactor: 24
     });
   });
+
+  it('get all bees via GET', async() => {
+    const bees = await Promise.all([
+      {
+        beeName: 'Gertrude',
+        buzzStyle: 'sassy',
+        fuzzyFactor: 24
+      },
+      {
+        beeName: 'Bobo',
+        buzzStyle: 'classy',
+        fuzzyFactor: 8
+      },
+      {
+        beeName: 'Carlo',
+        buzzStyle: 'jazzy',
+        fuzzyFactor: 16
+      }
+    ].map(bee => Bee.insert(bee)));
+
+    const res = await request(app)
+      .get('/api/v1/bees');
+
+    expect(res.body).toEqual(expect.arrayContaining(bees));
+    expect(res.body).toHaveLength(bees.length);
+  });
+
 
 
 
