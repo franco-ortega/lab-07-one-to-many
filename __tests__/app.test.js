@@ -75,6 +75,35 @@ describe('app.js endpoint', () => {
     expect(res.body).toEqual(flower);
   });
 
+  it('update one flower via PUT', async() => {
+    const flower = await Flower.insert(
+      {
+        color: 'purple',
+        fragrance: 'musky',
+        petals: 7
+      }
+    );
+
+    const res = await request(app)
+      .put(`/api/v1/flowers/${flower.id}`)
+      .send(
+        {
+          color: 'purple',
+          fragrance: 'sweet',
+          petals: 7
+        }
+      );
+
+    expect(res.body).toEqual(
+      {
+        ...flower,
+        color: 'purple',
+        fragrance: 'sweet',
+        petals: 7
+      }
+    );
+  });
+
 
 });
 
