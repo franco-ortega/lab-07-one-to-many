@@ -10,14 +10,6 @@ describe('app.js endpoint', () => {
 
   afterAll(() => pool.end());
 
-  it('sample GET test to check connection', () => {
-    return request(app)
-      .get('/')
-      .then(res => {
-        expect(res.body).toEqual({ smell: 'the flowers' });
-      });
-  });
-
   it('create one new flower via POST', async() => {
     const res = await request(app)
       .post('/api/v1/flowers')
