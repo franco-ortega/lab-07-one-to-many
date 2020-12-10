@@ -104,6 +104,22 @@ describe('app.js endpoint', () => {
     );
   });
 
+  it('delete one flower via DELETE', async() => {
+    const flower = await Flower.insert(
+      {
+        color: 'purple',
+        fragrance: 'musky',
+        petals: 7
+      }
+    );
+
+    const res = await request(app)
+      .delete(`/api/v1/flowers/${flower.id}`);
+
+    expect(res.body).toEqual(flower);
+  });
+
+
 
 });
 
