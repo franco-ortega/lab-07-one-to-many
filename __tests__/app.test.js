@@ -1,6 +1,7 @@
 const fs = require('fs');
 const request = require('supertest');
 const app = require('../lib/app');
+const Flower = require('../lib/models/flowers');
 const pool = require('../lib/utils/pool');
 
 describe('app.js endpoint', () => {
@@ -31,6 +32,32 @@ describe('app.js endpoint', () => {
       fragrance: 'sweet',
       petals: 12
     });
+  });
+
+  it('get all flowers via GET', async() => {
+    const flowers = await Promise.all([
+      {
+        color: 'burgandy',
+        fragrance: 'sweet',
+        petals: 12
+      },
+      {
+        color: 'sky blue',
+        fragrance: 'spicy',
+        petals: 20
+      },
+      {
+        color: 'purple',
+        fragrance: 'musky',
+        petals: 7
+      }
+    ].map(flower => Flower.insert(flower)));
+
+    const res = await request(app)
+      .get('/api/v1/flowers');
+
+    expect(res.body).toEqual(expect.arrayContaining(flowers));
+    expect(res.body).toHaveLength(flowers.length);
   });
 
 
