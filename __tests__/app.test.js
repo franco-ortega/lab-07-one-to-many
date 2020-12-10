@@ -185,6 +185,40 @@ describe('app.js endpoint', () => {
 
 
 
+  
+
+
+  it('update one bee via PUT', async() => {
+    const bee = await Bee.insert(
+      {
+        beeName: 'Bobo',
+        buzzStyle: 'classy',
+        fuzzyFactor: 8
+      }
+    );
+
+    const res = await request(app)
+      .put(`/api/v1/bees/${bee.id}`)
+      .send(
+        {
+          beeName: 'Bobo',
+          buzzStyle: 'snazzy',
+          fuzzyFactor: 8
+        }
+      );
+
+    expect(res.body).toEqual(
+      {
+        ...bee,
+        beeName: 'Bobo',
+        buzzStyle: 'snazzy',
+        fuzzyFactor: 8
+      }
+    );
+  });
+
+
+
 
 });
 
