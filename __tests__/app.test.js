@@ -27,6 +27,7 @@ describe('app.js endpoint', () => {
     });
   });
 
+  // Flower tests begin
   it('get all flowers via GET', async() => {
     const flowers = await Promise.all([
       {
@@ -123,7 +124,6 @@ describe('app.js endpoint', () => {
 
 
   // Bee tests begin
-
   it('create one new bee via POST', async() => {
     const flower = await Flower.insert(
       {
@@ -140,7 +140,6 @@ describe('app.js endpoint', () => {
         buzzStyle: 'sassy',
         fuzzyFactor: 24,
         flowerId: flower.id
-        
       });
 
     expect(res.body).toEqual({
@@ -149,7 +148,6 @@ describe('app.js endpoint', () => {
       buzzStyle: 'sassy',
       fuzzyFactor: 24,
       flowerId: flower.id
-    
     });
   });
 
@@ -182,11 +180,6 @@ describe('app.js endpoint', () => {
     expect(res.body).toHaveLength(bees.length);
   });
 
-
-
-
-
-
   it('get one bee via GET', async() => {
     const bee = await Bee.insert(
       {
@@ -201,10 +194,6 @@ describe('app.js endpoint', () => {
 
     expect(res.body).toEqual(bee);
   });
-
-
-
-
 
   it('update one bee via PUT', async() => {
     const bee = await Bee.insert(
