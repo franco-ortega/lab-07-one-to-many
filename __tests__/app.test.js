@@ -181,13 +181,6 @@ describe('app.js endpoint', () => {
     expect(res.body).toEqual(bee);
   });
 
-
-
-
-
-  
-
-
   it('update one bee via PUT', async() => {
     const bee = await Bee.insert(
       {
@@ -217,8 +210,19 @@ describe('app.js endpoint', () => {
     );
   });
 
+  it('delete one bee via DELETE', async() => {
+    const bee = await Bee.insert(
+      {
+        beeName: 'Bobo',
+        buzzStyle: 'classy',
+        fuzzyFactor: 8
+      }
+    );
 
+    const res = await request(app)
+      .delete(`/api/v1/bees/${bee.id}`);
 
+    expect(res.body).toEqual(bee);
+  });
 
 });
-
