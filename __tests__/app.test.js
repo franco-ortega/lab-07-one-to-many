@@ -60,6 +60,21 @@ describe('app.js endpoint', () => {
     expect(res.body).toHaveLength(flowers.length);
   });
 
+  it('get one flower via GET', async() => {
+    const flower = await Flower.insert(
+      {
+        color: 'purple',
+        fragrance: 'musky',
+        petals: 7
+      }
+    );
+
+    const res = await request(app)
+      .get(`/api/v1/flowers/${flower.id}`);
+
+    expect(res.body).toEqual(flower);
+  });
+
 
 });
 
