@@ -1,7 +1,12 @@
+const fs = require('fs');
 const request = require('supertest');
 const app = require('../lib/app');
+const pool = require('../lib/utils/pool');
 
 describe('app.js endpoint', () => {
+  beforeEach(() => pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8')));
+
+  afterAll(() => pool.end());
 
   it('sample GET test to check connection', () => {
     return request(app)
@@ -21,13 +26,13 @@ describe('app.js endpoint', () => {
       });
 
     expect(res.body).toEqual({
-      id: 1,
+      id: '1',
       color: 'burgandy',
       fragrance: 'sweet',
       petals: 12
     });
   });
 
-  
+
 });
 
