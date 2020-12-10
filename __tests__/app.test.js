@@ -166,6 +166,22 @@ describe('app.js endpoint', () => {
     expect(res.body).toHaveLength(bees.length);
   });
 
+  it('get one bee via GET', async() => {
+    const bee = await Bee.insert(
+      {
+        beeName: 'Carlo',
+        buzzStyle: 'jazzy',
+        fuzzyFactor: 16
+      }
+    );
+
+    const res = await request(app)
+      .get(`/api/v1/bees/${bee.id}`);
+
+    expect(res.body).toEqual(bee);
+  });
+
+
 
 
 
