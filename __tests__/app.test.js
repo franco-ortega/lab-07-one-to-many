@@ -62,10 +62,19 @@ describe('app.js endpoint', () => {
       }
     );
 
+    const bees = await Promise.all([
+      { beeName: 'Gertrude', buzzStyle: 'sassy', fuzzyFactor: 24, flowerId: flower.id },
+      { beeName: 'Bobo', buzzStyle: 'class', fuzzyFactor: 8, flowerId: flower.id },
+      { beeName: 'Carlo', buzzStyle: 'jazzy', fuzzyFactor: 16, flowerId: flower.id }
+    ].map(bee => Bee.insert(bee)));
+
     const res = await request(app)
       .get(`/api/v1/flowers/${flower.id}`);
 
-    expect(res.body).toEqual(flower);
+    expect(res.body).toEqual({
+      ...flower,
+      bees: expect.arrayContaining(bees)
+    });
   });
 
   it('update one flower via PUT', async() => {
@@ -116,19 +125,31 @@ describe('app.js endpoint', () => {
   // Bee tests begin
 
   it('create one new bee via POST', async() => {
+    const flower = await Flower.insert(
+      {
+        color: 'purple',
+        fragrance: 'musky',
+        petals: 7
+      }
+    );
+  
     const res = await request(app)
       .post('/api/v1/bees')
       .send({
         beeName: 'Gertrude',
         buzzStyle: 'sassy',
-        fuzzyFactor: 24
+        fuzzyFactor: 24,
+        flowerId: flower.id
+        
       });
 
     expect(res.body).toEqual({
       id: '1',
       beeName: 'Gertrude',
       buzzStyle: 'sassy',
-      fuzzyFactor: 24
+      fuzzyFactor: 24,
+      flowerId: flower.id
+    
     });
   });
 
@@ -137,17 +158,20 @@ describe('app.js endpoint', () => {
       {
         beeName: 'Gertrude',
         buzzStyle: 'sassy',
-        fuzzyFactor: 24
+        fuzzyFactor: 24,
+        flowerId: Bee.flower_id
       },
       {
         beeName: 'Bobo',
         buzzStyle: 'classy',
-        fuzzyFactor: 8
+        fuzzyFactor: 8,
+        flowerId: Bee.flower_id
       },
       {
         beeName: 'Carlo',
         buzzStyle: 'jazzy',
-        fuzzyFactor: 16
+        fuzzyFactor: 16,
+        flowerId: Bee.flower_id
       }
     ].map(bee => Bee.insert(bee)));
 
@@ -157,6 +181,11 @@ describe('app.js endpoint', () => {
     expect(res.body).toEqual(expect.arrayContaining(bees));
     expect(res.body).toHaveLength(bees.length);
   });
+
+
+
+
+
 
   it('get one bee via GET', async() => {
     const bee = await Bee.insert(
@@ -172,6 +201,10 @@ describe('app.js endpoint', () => {
 
     expect(res.body).toEqual(bee);
   });
+
+
+
+
 
   it('update one bee via PUT', async() => {
     const bee = await Bee.insert(
@@ -201,6 +234,10 @@ describe('app.js endpoint', () => {
       }
     );
   });
+
+
+
+
 
   it('delete one bee via DELETE', async() => {
     const bee = await Bee.insert(

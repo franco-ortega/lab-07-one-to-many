@@ -13,5 +13,5 @@ id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 bee_name TEXT NOT NULL,
 buzz_style TEXT NOT NULL,
 fuzzy_factor INTEGER CHECK (fuzzy_factor >= 0),
-bee_id BIGINT REFERENCES   flowers(id)
+flower_id BIGINT REFERENCES flowers(id)
 );
