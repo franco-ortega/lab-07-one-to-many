@@ -120,6 +120,27 @@ describe('app.js endpoint', () => {
   });
 
 
+  // Bee tests begin
+
+  it('create one new bee via POST', async() => {
+    const res = await request(app)
+      .post('/api/v1/bees')
+      .send({
+        beeName: 'Gertrude',
+        buzzStyle: 'sassy',
+        fuzzyFactor: 24
+      });
+
+    expect(res.body).toEqual({
+      id: '1',
+      beeName: 'Gertrude',
+      buzzStyle: 'sassy',
+      fuzzyFactor: 24
+    });
+  });
+
+
+
 
 });
 
